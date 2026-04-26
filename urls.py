@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import AddToCartView, CartDetailsView, CartItemDeleteView, CreateOrderView
+from django.contrib.auth import views as auth_views
+from .views import SignupView
 
 urlpatterns = [
-    path('add/<int:pk>/', AddToCartView.as_view(), name='add_to_cart'),
-    path('cart/', CartDetailsView.as_view(), name='cart_detail'),
-    path('delete/<int:pk>/', CartItemDeleteView.as_view(), name='cartitem_delete'),
-     path('shipping/', CreateOrderView.as_view(), name='create_order'),
+    path('signup/', SignupView.as_view(), name='signup'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
